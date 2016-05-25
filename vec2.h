@@ -1,6 +1,6 @@
 
 //	A simple , GLSL-like Programing framework
-//	Using for debug GLSL codes in runtime
+//	Use for debugging GLSL codes in runtime
 
 //	author : jelo
 //	(C) Quatum Dynamics Lab.
@@ -34,6 +34,12 @@ public:
 	inline vec2 operator += ( const vec2& v2 ) {
 		x = x + v2.x ;
 		y = y + v2.y ;
+		return *this ;
+	}
+
+	inline vec2 operator *= ( float v ) {
+		x = x * v ;
+		y = y * v ;
 		return *this ;
 	}
 
@@ -114,6 +120,7 @@ inline vec2 operator * ( const vec2& v , const vec2& v2 ) {
 	return r ;
 
 }
+
 inline vec2 Floor ( const vec2& v ) {
 	vec2 r;
 	r.x = floor ( v.x );
@@ -123,11 +130,17 @@ inline vec2 Floor ( const vec2& v ) {
 
 inline vec2 Fract ( const vec2& v ) {
 	vec2 r;
-	vec2 r2;
-	r = v;
-	r2 = Floor ( v );
-	r2 = r - r2;
-	return r2;
+	//	x component
+	if ( v.x >= 0. )
+		r.x = v.x - floor ( v.x ) ;
+	else
+		r.x = v.x - ceil ( v.x ) ;
+	//	y component
+	if ( v.y >= 0. )
+		r.y = v.y - floor ( v.y ) ;
+	else
+		r.y = v.y - ceil ( v.y ) ;
+	return r ;
 }
 
 inline vec2 Smooth ( const vec2& v ) {

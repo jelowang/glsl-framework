@@ -1,6 +1,6 @@
 
 //	A simple , GLSL-like Programing framework
-//	Using for debug GLSL codes in runtime
+//	Use for debugging GLSL codes in runtime
 
 //	author : jelo
 //	(C) Quatum Dynamics Lab.

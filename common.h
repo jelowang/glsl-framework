@@ -1,6 +1,6 @@
 
 //	A simple , GLSL-like Programing framework
-//	Using for debug GLSL codes in runtime
+//	Use for debugging GLSL codes in runtime
 
 //	author : jelo
 //	(C) Quatum Dynamics Lab.
@@ -22,16 +22,14 @@ using namespace std ;
 #define Glsl1OverPi 1.0f / GlslPi 
 #define Glsl1Over2Pi 1.0f / Glsl2Pi
 
-inline float GlslClampf ( float value , float min_inclusive , float max_inclusive ) {
+inline float GlslClampf ( float value , float minv , float maxv ) {
 
-	#define SWAP(x, y, type)    \
-		{ type temp = ( x );        \
-		x = y; y = temp;        \
+	if ( minv > maxv ) {
+		float temp = minv ;
+		minv = maxv ;
+		maxv = temp ;
 	}
-	if ( min_inclusive > max_inclusive ) {
-		SWAP ( min_inclusive , max_inclusive , float );
-	}
-	return value < min_inclusive ? min_inclusive : value < max_inclusive ? value : max_inclusive;
+	return value < minv ? minv : value < maxv ? value : maxv;
 
 }
 
@@ -41,6 +39,25 @@ inline float Smooth ( float edge0 , float edge1 , float x ) {
 	t = GlslClampf ( ( x - edge0 ) / ( edge1 - edge0 ) , 0.0 , 1.0 ) ;
 	return t * t * ( 3.0 - 2.0 * t ) ;
 
+}
+
+inline float Step ( float edge , float x ) {
+	return x < edge ? 0.0f : 1.0f ;
+}
+
+inline float Fract ( float value ) {
+	if ( value >= 0.0 )
+		return value - floor ( value ) ;
+	else
+		return value - ceil ( value ) ;
+}
+
+const float fp_amount = ( float ) ( 0xFFFF );
+const float fp_amount_inv = 1.f / fp_amount;
+
+inline float Frac ( float a_X )
+{
+	return ( ( int ) ( a_X * fp_amount ) & 0xFFFF ) * fp_amount_inv;
 }
 
 #define Glslcosf(x) GlslCosine(x)
