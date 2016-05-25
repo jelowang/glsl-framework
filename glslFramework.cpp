@@ -179,7 +179,7 @@ int main(int argc, char* argv[])
 
 				// ray
 				vec3 ori = vec3 ( 0.0 , 10.0 , 5.0 );
-				vec3 dir = Normalize ( vec3 ( uv.x , uv.y , 2.0 ) );
+				vec3 dir = Normalize ( vec3 ( uv.x , uv.y , -2.0 ) );
 				//dir.z += length(uv) * 0.15;
 				//dir = normalize(dir) * fromEuler(ang);
 
@@ -196,7 +196,7 @@ int main(int argc, char* argv[])
 					getSeaColor ( p , n , light , dir , dist ) ,
 					pow ( Smooth ( 0.0 , -0.05 , dir.y ) , 0.3 ) );
 
-				DebugDraw::draw ( x , y , p.x , p.y , p.z , 1.0f ) ;
+				DebugDraw::draw ( x , y , color.x , color.y , color.z , 1.0f ) ;
 				x = ( int ) ( WIDTH * counter ) ;
 			}
 			y = ( int ) ( WIDTH * looper ) ;
