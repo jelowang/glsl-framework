@@ -80,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glslFramework.cpp" />
-    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />

@@ -157,7 +157,7 @@ vec3 getSeaColor ( vec3 p , vec3 n , vec3 l , vec3 eye , vec3 dist ) {
 int main(int argc, char* argv[])
 {
 
-	SEA_TIME = 0.0f ;
+	SEA_TIME = 1000.0f ;
 	float EPSILON_NRM = 0.1 / WIDTH ;
 
 	DebugDraw::init ( ( int )WIDTH , ( int ) HEIGHT ) ;
@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
 	float YStep = 1.0f / HEIGHT ;
 	float XStep = 1.0f / WIDTH ;
 
-	for ( int i = 0 ; i < 2 ; i++ ) {
+	for ( int i = 0 ; i < 1 ; i++ ) {
 
 		printf ( "%d\n" , i );
 
@@ -179,7 +179,7 @@ int main(int argc, char* argv[])
 
 				// ray
 				vec3 ori = vec3 ( 0.0 , 10.0 , 5.0 );
-				vec3 dir = Normalize ( vec3 ( uv.x , uv.y , -2.0 ) );
+				vec3 dir = Normalize ( vec3 ( uv.x , uv.y , 2.0 ) );
 				//dir.z += length(uv) * 0.15;
 				//dir = normalize(dir) * fromEuler(ang);
 
@@ -196,7 +196,7 @@ int main(int argc, char* argv[])
 					getSeaColor ( p , n , light , dir , dist ) ,
 					pow ( Smooth ( 0.0 , -0.05 , dir.y ) , 0.3 ) );
 
-				DebugDraw::draw ( x , y , color.x , color.y , color.z , 1.0f ) ;
+				DebugDraw::draw ( x , y , p.x , p.y , p.z , 1.0f ) ;
 				x = ( int ) ( WIDTH * counter ) ;
 			}
 			y = ( int ) ( WIDTH * looper ) ;
