@@ -14,7 +14,7 @@
 
 class mat3 {
 public:
-	mat3 ( ) {
+	mat3 () {
 		m00 = 1.0f ;
 		m01 = 0.0f ;
 		m10 = 0.0f ;
@@ -33,7 +33,7 @@ public:
 		m20 = mat20 ; m21 = mat21 ; m22 = mat22 ;
 
 	}
-	~mat3 ( ) {}
+	~mat3 () {}
 
 	float m00 ; float m01 ; float m02 ;	
 	float m10 ; float m11 ; float m12 ;
@@ -50,13 +50,12 @@ inline vec3 operator * ( const vec3& v , const mat3& m ) {
 	return r ;
 }
 
-inline vec3 operator *= ( const vec3& v , const mat3& m ) {
+inline void operator *= ( vec3& v , const mat3& m ) {
 
-	vec3 r ;
-	r.x = m.m00 * v.x + m.m10 * v.x + m.m20 * v.x ;
-	r.y = m.m01 * v.y + m.m11 * v.y + m.m21 * v.y ;
-	r.z = m.m02 * v.z + m.m12 * v.z + m.m22 * v.z ;
-	return r ;
+	v.x = m.m00 * v.x + m.m10 * v.x + m.m20 * v.x ;
+	v.y = m.m01 * v.y + m.m11 * v.y + m.m21 * v.y ;
+	v.z = m.m02 * v.z + m.m12 * v.z + m.m22 * v.z ;
+	return ;
 }
 
 #endif
