@@ -43,6 +43,12 @@ public:
 		return *this ;
 	}
 
+	inline vec2 operator = ( float v ) {
+		x = v ;
+		y = v ;
+		return *this ;
+	}
+
 	float x ;
 	float y ;
 } ;
@@ -130,16 +136,8 @@ inline vec2 Floor ( const vec2& v ) {
 
 inline vec2 Fract ( const vec2& v ) {
 	vec2 r;
-	//	x component
-	if ( v.x >= 0. )
-		r.x = v.x - floor ( v.x ) ;
-	else
-		r.x = v.x - ceil ( v.x ) ;
-	//	y component
-	if ( v.y >= 0. )
-		r.y = v.y - floor ( v.y ) ;
-	else
-		r.y = v.y - ceil ( v.y ) ;
+	r.x = Fract ( v.x ) ;
+	r.y = Fract ( v.y ) ;
 	return r ;
 }
 

@@ -45,19 +45,25 @@ inline float Step ( float edge , float x ) {
 	return x < edge ? 0.0f : 1.0f ;
 }
 
-inline float Fract ( float value ) {
-	if ( value >= 0.0 )
-		return value - floor ( value ) ;
-	else
-		return value - ceil ( value ) ;
-}
-
-const float fp_amount = ( float ) ( 0xFFFF );
+const float fp_amount = (float)( 0xFFFF );
 const float fp_amount_inv = 1.f / fp_amount;
 
 inline float Frac ( float a_X )
 {
-	return ( ( int ) ( a_X * fp_amount ) & 0xFFFF ) * fp_amount_inv;
+	return ( (int)( a_X * fp_amount ) & 0xFFFF ) * fp_amount_inv;
+}
+
+inline float Fract ( float value ) {
+
+	//if ( value >= 0.0 )
+	//	return value - floor ( value ) ;
+	//else
+	//	return value - ceil ( value ) ;
+	double param , fractpart , intpart ;
+	param = value ;
+	fractpart = modf ( param , &intpart ) ;
+	return fractpart ;
+	//return Frac(value) ;
 }
 
 #define Glslcosf(x) GlslCosine(x)

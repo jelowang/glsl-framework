@@ -147,23 +147,15 @@ inline vec3 Floor ( const vec3& v ) {
 }
 
 inline vec3 Fract ( const vec3& v ) {
+
 	vec3 r;
-	//	x component
-	if ( v.x >= 0. )
-		r.x = v.x - floor ( v.x ) ;
-	else
-		r.x = v.x - ceil ( v.x ) ;
-	//	y component
-	if ( v.y >= 0. )
-		r.y = v.y - floor ( v.y ) ;
-	else
-		r.y = v.y - ceil ( v.y ) ;
-	//	z component
-	if ( v.z >= 0. )
-		r.z = v.z - floor ( v.z ) ;
-	else
-		r.z = v.z - ceil ( v.z ) ;
+
+	r.x = Fract ( v.x ) ;
+	r.y = Fract ( v.y ) ;
+	r.z = Fract ( v.z ) ;
+
 	return r ;
+
 }
 
 inline vec3 Smooth ( const vec3& v ) {

@@ -265,7 +265,6 @@ float noise3 ( vec2 uv )  // Thanks Inigo Quilez
 	float offset = 57.0;
 
 	float n = Dot ( p , vec3 ( 1.0 , offset , offset*2.0 ) );
-	return hash3 ( n + offset*3.0 + 1.0 );
 
 	return Mix ( Mix ( Mix ( hash3 ( n + 0.0 ) , hash3 ( n + 1.0 ) , f.x ) ,
 		Mix ( hash3 ( n + offset ) , hash3 ( n + offset + 1.0 ) , f.x ) , f.y ) ,
@@ -382,10 +381,13 @@ vec3 triangleRender ( vec2 uv ) {
 int main(int argc, char* argv[])
 {
 
+	float r = Frac ( -123.434 ) ;
+	float rr = Fract (-123.434) ;
+
 	SEA_TIME = 1000.0f ;
 	
 	DebugDraw::init ( ( int )WIDTH , ( int ) HEIGHT ) ;
-	
+
 	int y = 0 ;
 	float YStep = 1.0f / HEIGHT ;
 	float XStep = 1.0f / WIDTH ;
@@ -399,12 +401,10 @@ int main(int argc, char* argv[])
 				uv = uv * 2.0f - 1.0f ;
 				uv.x = uv.x * WIDTH / HEIGHT ;
 				vec3 color ;
-				color = triangleRender ( uv ) ;
-				float c = noise3 ( uv ) ;
-				DebugDraw::draw ( x , y , c , c , c , 1.0f ) ;
+				color = sphereRender ( uv ) ;
+				DebugDraw::draw ( x , y , color.x , color.y , color.z , 1.0f ) ;
 				x = ( int ) ( WIDTH * counter ) ;
-
-				printf ( "%f,%f\n" , looper , counter );
+				printf ( "Rendering : %d %%\n" , (int )(looper * 100.0f) );
 			}
 			y = ( int ) ( WIDTH * looper ) ;
 		}
