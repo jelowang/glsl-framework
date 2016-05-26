@@ -7,8 +7,8 @@
 #include "util.h"
 #include "debug.h"
 
-#define WIDTH 256.0f
-#define HEIGHT 256.0f
+#define WIDTH 256.0
+#define HEIGHT 256.0
 
 //	ocean begin
 const int ITER_GEOMETRY = 3;
@@ -34,6 +34,10 @@ mat3 euler2mat ( vec3 ang ) {
 }
 
 float hash2 ( vec2 p ) {
+
+//	float h = Dot ( p , vec2 ( 127.1 , 311.7 ) ) ;
+//	float r = sinf ( h )*43758.5453123 ;
+//	return r - floor(r) ; 
 	float h = Dot ( p , vec2 ( 127.1 , 311.7 ) ) ;
 	return Fract ( sinf ( h )*43758.5453123 ) ;
 }
@@ -105,7 +109,7 @@ float heightMapTracing ( vec3 ori , vec3 dir , vec3& p ) {
 	float hm = map ( ori + dir * tm );
 	float tmid = 0.0;
 	for ( int i = 0; i < 16; i++ ) {
-		tmid = Mix ( tm , tx , hm / ( hm - hx ) );
+		tmid = Mix ( tm , tx , hm / ( hm - hx ) );		
 		p = ori + dir * tmid;
 		float hmid = map ( p );
 		if ( hmid < 0.0 ) {
@@ -177,7 +181,7 @@ vec3 oceanRender ( vec2 uv ) {
 
 	// tracing
 	vec3 p;
-	heightMapTracing ( ori , dir , p );
+	float height = heightMapTracing ( ori , dir , p );
 	vec3 dist = p - ori;
 	vec3 n = getNormal ( p , Dot ( dist , dist ) * EPSILON_NRM );
 	vec3 light = Normalize ( vec3 ( 0.0 , 1.0 , 0.8 ) );

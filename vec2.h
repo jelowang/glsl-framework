@@ -135,10 +135,19 @@ inline vec2 Floor ( const vec2& v ) {
 }
 
 inline vec2 Fract ( const vec2& v ) {
+	/*
 	vec2 r;
 	r.x = Fract ( v.x ) ;
 	r.y = Fract ( v.y ) ;
 	return r ;
+	*/
+	vec2 r;
+	vec2 r2;
+	r = v;
+	r2 = Floor ( v );
+	r2 = r - r2;
+	return r2;
+	
 }
 
 inline vec2 Smooth ( const vec2& v ) {

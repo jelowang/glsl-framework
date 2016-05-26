@@ -155,7 +155,14 @@ inline vec3 Fract ( const vec3& v ) {
 	r.z = Fract ( v.z ) ;
 
 	return r ;
-
+	/*
+	vec3 r;
+	vec3 r2;
+	r = v;
+	r2 = Floor ( v );
+	r2 = r - r2;
+	return r2;
+	*/
 }
 
 inline vec3 Smooth ( const vec3& v ) {
