@@ -81,7 +81,7 @@ inline double drand48 () {
 
 inline void srand48 ( unsigned int i ) {
 	static unsigned long long seed = 1 ;
-	seed = ( ( ( long long int )i ) << 16 ) | rand ( );
+	seed = ( ( ( long long int )i ) << 16 ) | rand ();
 }
 
 
