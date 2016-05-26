@@ -66,6 +66,25 @@ inline float Fract ( float value ) {
 	//return Frac(value) ;
 }
 
+inline double drand48 () {
+
+	static unsigned long long seed = 1 ;
+
+	#define MNWZ 0x100000000
+	#define ANWZ 0x5DEECE66D
+	#define CNWZ 0xB16
+
+	seed = ( ANWZ * seed + CNWZ ) & 0xFFFFFFFFFFFFLL;
+	unsigned int x = seed >> 16;
+	return ( (double)x / (double)MNWZ );
+}
+
+inline void srand48 ( unsigned int i ) {
+	static unsigned long long seed = 1 ;
+	seed = ( ( ( long long int )i ) << 16 ) | rand ( );
+}
+
+
 #define Glslcosf(x) GlslCosine(x)
 #define Glslsinf(x) GlslSine(x)
 #define GlslToDegree(__ANGLE__) ((__ANGLE__) * 57.29577951f) // PI * 180
