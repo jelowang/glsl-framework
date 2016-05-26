@@ -401,7 +401,7 @@ int main(int argc, char* argv[])
 				uv = uv * 2.0f - 1.0f ;
 				uv.x = uv.x * WIDTH / HEIGHT ;
 				vec3 color ;
-				color = sphereRender ( uv ) ;
+				color = triangleRender ( uv ) ;
 				DebugDraw::draw ( x , y , color.x , color.y , color.z , 1.0f ) ;
 				x = ( int ) ( WIDTH * counter ) ;
 				printf ( "Rendering : %d %%\n" , (int )(looper * 100.0f) );
